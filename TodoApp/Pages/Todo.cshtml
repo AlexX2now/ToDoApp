@@ -1,0 +1,83 @@
+﻿@page
+@model TodoApp.Pages.TodoModel
+@{
+    ViewData["Title"] = "Список задач";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Список задач</title>
+    <link href="/css/site.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+<h1>Список задач</h1>
+    <div class="form-container">
+        <form method="post">
+            <label for="title">
+                Заголовок новой задачи
+                <input type="text" name="title" />
+            </label>
+            <button type="submit" name="actionBtn" value="addBtn">Добавить</button>
+        </form>
+    </div>
+
+    <div class="form-container">
+        <form method="post">
+            <label for="title">
+                Код записи для выполенния
+                <input type="text" name="title" />
+            </label>
+            <button type="submit" name="actionBtn" value="perBtn">Выполнить</button>
+        </form>
+    </div>
+
+<div class="form-container">
+        <form method="post">
+            <label for="title">
+                Код записи для удаления
+                <input type="text" name="title" />
+            </label>
+            <button type="submit" name="actionBtn" value="delBtn">Удалить</button>
+        </form>
+    </div>
+
+    <div class="form-container">
+        <form method="post">
+            <label for="title">
+                Код записи для поиска
+                <input type="text" name="title" />
+            </label>
+            <button type="submit" name="actionBtn" value="serBtn">Найти</button>
+        </form>
+    </div>
+
+    <div class="form-container">
+        <form method="post">
+            <label for="recToUpd">
+                Код записи
+                <select name="recToUpd">
+                    @foreach (var item in Model.TodoItems)
+                    {
+                        <option value="@item.Id">@item.Id</option>
+                    }
+                </select>
+            </label>
+            <label for="title">
+                Новой заголовок
+                <input type="text" name="title" />
+            </label>
+            <button type="submit" name="actionBtn" value="updBtn">Отредактировать</button>
+        </form>
+    </div>
+
+
+<form method="post">
+    <button type="submit" name="actionBtn" value="refreshBtn">Обновить список</button>
+</form>
+
+@Html.Raw(Model.TableHtml)
+</body>
+</html>
